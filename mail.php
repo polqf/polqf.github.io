@@ -7,6 +7,7 @@ $formcontent="Subject: $subject \n Message: $message";
 $recipient = "pol.quintana1@gmail.com";
 $subject = "Contact Form";
 $mailheader = "From: $email \r\n";
-mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
+mail($recipient, $subject, $formcontent, $mailheader);
 echo "Thank You!" . " -" . "<a href='form.html' style='text-decoration:none;color:#ff0099;'> Return Home</a>";
+
 ?>
