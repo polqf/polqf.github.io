@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Blog - Pol Quintana</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.scrollzer.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56549735-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- Header -->
+				<section id="header" class="skel-layers-fixed">
+					<header>
+						<span class="image avatar"><img src="images/avatar.jpg" alt="" /></span>
+						<h1 id="logo"><a href="#">Pol Quintana</a></h1>
+						<p>iOS Developer</p>
+					</header>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">About Me</a></li>
+							<li><a href="index.html#two">Things I Can Do</a></li>
+							<li><a href="index.html#three">Things I Have Done</a></li>
+							<li><a href="blog.html">Blog</a></li>
+						</ul>
+					</nav>
+					<footer>
+						<ul class="icons">
+							<li><a href="https://twitter.com/poolqf" class="icon fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+							<li><a href="http://es.linkedin.com/in/polquintana/" class="icon fa-linkedin" target="_blank"><span class="label">Twitter</span></a></li>
+							<li><a href="https://github.com/poolqf" class="icon fa-github" target="_blank"><span class="label">Github</span></a></li>
+							<li><a href="mailto:pol.quintana1@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+					</footer>
+				</section>
+
+			<!-- Main -->
+				<div id="main">
+
+					<!-- One -->
+						<section id="one">
+							<div class="container">
+								<!-- Header -->
+								<header class="major">
+									<h2>Cómo publicar tu primer Pod, paso a paso</h2>
+									<p><a href="cocoapods_en.html" class="fa-code"> English Version Here</a></p>
+								</header>
+
+								<!-- Article -->
+<p>La razón principal de este post es que durante las ultimas semanas he estado preparando un pod para subir a CocoaPods, y he podido sentir en mis carnes que no hay documentación para principiantes. Pero gracias a la ayuda de grandes como Daniel García (<a href="https://twitter.com/fillito">@fillito</a>) he podido acabar lanzándolo.</p>
+
+<p>Para intentar facilitar a la gente que se pueda encontrar en la misma situación en la que he encontrado yo, lanzo este pequeño tutorial en el que voy a explicar la manera que he usado.</p>
+
+<h2>Preparando el terreno</h2>
+
+<p>Hay muchas maneras de hacer un Pod y, sabiendo eso, yo voy a intentar explicar la manera que me parece más sencilla para los que empezamos.</p>
+
+<p>Vamos a <a href="http://github.com">Github</a> y nos creamos una nueva repo. Cuando vayáis a crearlo, marcad la opción de que os genere el <strong>README</strong> y la <strong>Licencia</strong>. Así nos horraremos un poco de trabajo. Si ya tenéis un README y una Licencia preparada, no hace falta que los generéis.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/7887319/4941749/d0c5d24c-65e5-11e4-821a-321e86cf82ad.png" height="200px" /></p>
+
+<p>Cuando este esté creado, usad vuestro cliente Git para clonarlo en vuestro ordenador. De ahora en adelante, durante este post, vamos a llamar <code>CarpetaPrincipal</code> a la carpeta que contiene nuestra repo en el ordenador.</p>
+
+<p>En el momento que ya tenemos los archivos localmente, vamos a crearnos un nuevo proyecto en Xcode. Este proyecto serà la <code>Demo</code> de nuestro Pod, en este proyecto deberíamos demostrar lo que este puede hacer de manera simple y clara.</p>
+
+<h5>Recomendación:</h5>
+
+<pre><code>Una recomendación que recibí de Daniel García es crear este proyecto 
+en un directorio fuera de el que estamos trabajando, renombrar la carpeta 
+contenedora a Demo y meter esta carpeta dentro de la carpeta en la que estamos 
+trabajando. Algo así:
+
+Si la carpeta en la que trabajamos está localizada en 
+/Documentos/CarpetaPrincipal, creamos un proyecto de XCode en el escritorio, 
+por ejemplo. Entonces tendremos /Escritorio/ProyectoDeMiPod
+
+Entonces renombraremos el "ProyectoDeMiPod" a "Demo", y lo moveremos a la 
+carpeta /Documentos/CarpetaDeMiPod/ quedando una estructura así
+
+/CarpetaPrincipal/
+     README.md
+     License.md
+     /Demo
+        /...
+
+La finalidad de hacer esto es evitar hacer un proyecto llamado Demo, y que 
+todas las clases que creemos lleven incrustada la palabra "Demo" y que tengan 
+un nombre que a nosotros nos guste. Es una cuestión de estilo, así que podéis 
+ignorar este consejo si no os parece adecuado
+</code></pre>
+
+<p>Una vez creado el proyecto, tenemos que crear una nueva carpeta en nuestra 
+CarpetaPrincipal, esta carpeta va a contener los archivos que van a formar el Pod, 
+los únicos que van a ser descargados por el usuario cuando éste use nuestra librería. 
+De ahora en adelante vamos a llamar a esta carpeta <code>ContenidoDelPod</code></p>
+
+<p>Una vez creada, metemos ahí los archivos que deseemos publicar. Ahora tenemos:</p>
+
+<ul>
+<li><code>/CarpetaPrincipal/</code>
+
+<ul>
+<li>README.md</li>
+<li>License.md</li>
+<li><code>/Demo</code>
+
+<ul>
+<li>/...</li>
+</ul>
+</li>
+<li><code>/ContenidoDelPod</code>
+
+<ul>
+<li>/...       &lt;--- Archivos que se van a subir</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Una vez tenemos todos los archivos en su sitio, vamos a nuestro proyecto Demo. Nos creamos un nuevo grupo, y lo llamamos como nuestro pod. Ahora arrastramos el contenido de <code>ContenidoDelPod</code>dentro de este grupo, y escogemos estas opciones:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/7887319/4941826/7ca6eee8-65e6-11e4-8e47-8064f0c67ff4.png" height="200px" /></p>
+
+<p>De esta manera, usaremos los archivos de la carpeta <code>/ContenidoDelPod</code> en nuestra Demo, sin hacer que estos archivos estén realmente dentro del proyecto, los tenemos "linkados". Podremos trabajar con ellos dentro del proyecto, de manera que podemos testear/actualizar o lo que queramos.</p>
+
+<p>Por último, pero no menos importante, vamos a crear el *.podspec. Este archivo contiene la configuración de nuestro Pod. Podeis descargar el siguiente archivo, el cual va a ser igual que el ejemplo que voy a poner:</p>
+
+<p style="text-align:center;"><a href= "http://www.filedropper.com/tutorial_8" class="icon fa-cloud-download"> Descargar</a></p>
+
+<p>Vamos a verlo un poco más en detalle:</p>
+
+<pre><code>Pod::Spec.new do |s|
+  s.name         = "PQFCustomLoaders"
+  s.version      = "0.0.1"
+  s.summary      = "Collection of Custom Loaders highly customizable."
+  s.homepage     = "https://github.com/poolqf/PQFCustomLoaders"
+  s.license      = 'MIT'
+  s.author       = "Pol Quintana"
+  s.source       = { :git =&gt; "https://github.com/poolqf/PQFCustomLoaders.git", :tag =&gt; "0.0.1" }
+  s.platform     = :ios, '7.0'
+  s.source_files = 'PQFCustomLoaders'
+  s.frameworks   = 'UIKit'
+  s.requires_arc = true
+  s.social_media_url = 'https://twitter.com/poolqf'
+  s.dependency 'UIColor+FlatColors'
+end
+</code></pre>
+
+<ul>
+<li><strong>s.name</strong> : Nombre que le quieres poner a tu Pod</li>
+<li><strong>s.version</strong> : Versión actual</li>
+<li><strong>s.summary</strong> : Pequeña descripción</li>
+<li><strong>s.homepage</strong> : Si tienes un portafolio donde haya una entrada donde se vea el proyecto, ponlo aquí</li>
+<li><strong>s.license</strong>: Licencia que le aplicas</li>
+<li><strong>s.author</strong> : Nombre del creador</li>
+<li><strong>s.source</strong> :
+
+<ul>
+<li><strong>:git =></strong> : Link a la repo donde está localizado el proyecto (Toda la carpeta de la que hablamos antes debe estar en una Repo)</li>
+<li><strong>:tag =></strong> : Tag, en github, al que apunta la versión que anteriormente hemos marcado en "s.version"</li>
+</ul>
+</li>
+<li><strong>s.platform</strong> : :ios, '#Version de iOS mínima en la que funcionará#'</li>
+<li><strong>s.source_files</strong>: Carpeta, dentro de tu Repo, donde están los archivos necesarios para que el Pod funcione. Así evitando que la gente que se instale tu pod tenga que meterse en su proyecto TU proyecto Demo y el resto de archivos que tengas.</li>
+<li><strong>s.frameworks</strong> :</li>
+<li><strong>s.requires_arc</strong>:</li>
+<li><strong>s.social_media_url</strong> : https://twitter.com/tuNombreDeUsuario</li>
+<li><strong>s.dependency</strong>: Otros pods que necesita tu Pod para funcionar correctamente.</li>
+</ul>
+
+
+<p>Ahora lo que tenemos que hacer es editarlo a nuestro gusto y renombrar el *.podspec con el nombre que le vamos a dar al Pod, quedando nuestra carpeta así:</p>
+
+<ul>
+<li><code>/CarpetaPrincipal/</code>
+
+<ul>
+<li>README.md</li>
+<li>License.md</li>
+<li>NombreDelPod.podspec &lt;---</li>
+<li><code>/Demo</code>
+
+<ul>
+<li>/...</li>
+</ul>
+</li>
+<li><code>/ContenidoDelPod</code>
+
+<ul>
+<li>/...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>¡NO USEIS TEXTEDIT PARA EDITAR EL PODSPEC!</strong> Mi recomendación es que uséis XCode, pero hay muchos otros editores que funcionaran.</p>
+
+<h2>Momento Pre-Subida</h2>
+
+<p>Antes de subir el Pod, deberemos hacer un par de cosas. Primero, vamos a comprobar que nuestro *.podspec es correcto. Abrimos el Terminal y nos dirigimos a la <code>CarpetaPrincipal</code>.</p>
+
+<p>Una vez allí, ejecutamos</p>
+
+<pre><code>pod lib lint
+</code></pre>
+
+<p>Una vez hecho esto, iremos a nuestro cliente Git y vamos a publicar <strong>sólo</strong> nuestro *.podspec, el cual ya hemos verificado.</p>
+
+<p>Ahora tenemos en nuestra repo un *.podspec que apunta a una versión (un tag), el cual aun no está creado en nuestra repo. Para arreglar esto volvemos a nuestro cliente Git y publicamos todo lo que no habíamos publicado antes.</p>
+
+<p><strong>¡¡¡</strong> Y a este commit le añadimos un tag, que tiene que ser igual que el parametro <strong>s.version !!!!</strong></p>
+
+<p>Ahora vamos a verificar que no sólo el *.podspec es correct, sino que todo la repo en Github está preparada para ser publicada en CocoaPods. Vamos a usar el comando:</p>
+
+<pre><code>pod spec lint
+</code></pre>
+
+<p>Si todo es correcto, estaremos sólo a un paso de publicar nuestro primer Pod</p>
+
+<h2>Vamos a publicar</h2>
+
+<p>Ahora que tenemos todo preparado, sólo nos queda registrarnos en CocoaPods. Lo haremos de la siguiente manera.</p>
+
+<p>Nos dirigimos a la <code>CarpetaPrincipal</code>desde el Terminal, y escribimos lo siguiente:</p>
+
+<pre><code>pod trunk register pol.quintana1@gmail.com 'Pol Quintana' --description='macbook pro'
+</code></pre>
+
+<p><em>La descripción es un identificador del ordenador que usamos para subir el Pod. En CocoaPods el identificador no va por mail, sino por el ordenador que usemos.</em></p>
+
+<p>Una vez hecho esto recibiremos un mail con un link de verificación. Una vez verificado... Vamos a publicar!</p>
+
+<p>Para publicar usaremos el siguiente comando</p>
+
+<pre><code>pod trunk push
+</code></pre>
+
+<p>Una vez introducido éste, y si todo va bien, ya estará publicado el Pod.</p>
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://guides.cocoapods.org/making/making-a-cocoapod.html">Guia en CocoaPods</a></li>
+<li><a href="http://guides.cocoapods.org/making/getting-setup-with-trunk">Más información sobre el comando "trunk"</a></li>
+</ul>
+
+							</div>
+						</section>
+						
+					<!-- Two -->
+				
+				</div>
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<ul class="copyright">
+							<li>&copy; Pol Quintana. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</div>
+				</section>
+			
+		</div>
+	</body>
+</html>
