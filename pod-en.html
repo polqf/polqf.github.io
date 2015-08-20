@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>How to publish your first Pod - Pol Quintana</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About Me</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>How to publish your first Pod</h1>
+                        <h2 class="subheading">Step by step guide</h2>
+                        <span class="meta">Posted by <a>Pol Quintana</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<p>The main reason of this post is that during the last weeks I have been preparing a pod to upload to CococaPods, and I could see that there is no documentation for newbies. But thanks to the help of great people like Dani García (<a href="https://twitter.com/fillito">@fillito</a>) I could finally publish it.</p>
+
+<p>To help people that could have been in the same situation as me, I am launching this little tutorial on where I will explain the way that I used.</p>
+
+<h2>Preparing the ground</h2>
+
+<p>There are a lot of ways to do a Pod and, knowing that, I am going to explain the way that could be the easiest.</p>
+
+<p>Let's go to <a href="http://github.com">Github</a> and create a new repo. Before you create it, mark the <strong>README</strong> and <strong>LICENSE</strong> options. If you already have a prepared README and License, forget this step.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/7887319/4941749/d0c5d24c-65e5-11e4-821a-321e86cf82ad.png" height="200px" /></p>
+
+<p>When we have our repo created, use your Git client to clonate it in your computer. Henceforth, during this post, we are going to call <code>MainFolder</code>the folder that contains the repo on the computer.</p>
+
+<p>At the moment we have all the files locally, we are going to create a new XCode project. This project will be the <code>Demo</code>of our Pod. In this project we should show the things that it does in a simple and clear way.</p>
+
+<h5>Recomendation:</h5>
+
+<pre><code>Dani García recommended me to create this project in a directory outside the one
+ that we are working on, rename the containing folder to Demo and put that
+  folder inside the folder we are working on. Somethong like that:
+
+If the folder we are working on is located in /Documents/MainFolder, we are
+ going to create the XCode project on the desktop, for example. Then we 
+ would have /Desktop/MiPodProject
+
+Then we should rename the "MiPodProject" folder to "Demo", and move it 
+to /Documents/MainFolder
+
+/MainFolder/
+     README.md
+     License.md
+     /Demo
+        /...
+
+The finality of that is to avoid creating a project called Demo, and that
+ all our classes have the Demo name inlaid but the name that we want. 
+ This is a point of style, so you can ignore it if you don't find it useful
+</code></pre>
+
+<p>Once we have our project, we have to make a new folder in our <code>MainFolder</code>, this one is going to contaon the files that are going the Pod itself, the only ones that are going to be dowloaded to the user. Henceforth we are going to call that folder <code>PodContainer</code>.</p>
+
+<ul>
+<li><code>/CarpetaPrincipal/</code>
+
+<ul>
+<li>README.md</li>
+<li>License.md</li>
+<li><code>/Demo</code>
+
+<ul>
+<li>/...</li>
+</ul>
+</li>
+<li><code>/PodContainer</code>
+
+<ul>
+<li>/...       &lt;--- Files that are going to be uploaded/downloaded</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Now that we have our files on its place, we are going to move to the Demo project. We are going to create a new group, and we call it with the same name as our Pod. Now we have to drag the content of <code>PodContainer</code> inside this group, and we choose this options:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/7887319/4941826/7ca6eee8-65e6-11e4-8e47-8064f0c67ff4.png" height="200px" /></p>
+
+<p>That way, we are going to use the <code>/PodContainer</code>files inside our Demo project, but without having to make them to be inside the project, we have them "linked". We can work with them, and all the changes are going to be saved in the original files.</p>
+
+<p>Finally, but not less important, we are going to create the *.podspec. This file is going to manage the configuration of our Pod. You can download the following file, which is going to be the same as the example I am going to show:</p>
+
+<p style="text-align:center;"><a href="http://www.filedropper.com/tutorial_8" class="icon fa-cloud-download"> Download</a></p>
+
+<p>Let's see it in detail:</p>
+
+<pre><code>Pod::Spec.new do |s|
+  s.name         = "PQFCustomLoaders"
+  s.version      = "0.0.1"
+  s.summary      = "Collection of Custom Loaders highly customizable."
+  s.homepage     = "https://github.com/poolqf/PQFCustomLoaders"
+  s.license      = 'MIT'
+  s.author       = "Pol Quintana"
+  s.source       = { :git =&gt; "https://github.com/poolqf/PQFCustomLoaders.git", :tag =&gt; "0.0.1" }
+  s.platform     = :ios, '7.0'
+  s.source_files = 'PQFCustomLoaders'
+  s.frameworks   = 'UIKit'
+  s.requires_arc = true
+  s.social_media_url = 'https://twitter.com/poolqf'
+  s.dependency 'UIColor+FlatColors'
+end
+</code></pre>
+
+<ul>
+<li><strong>s.name</strong> : Name of the Pod</li>
+<li><strong>s.version</strong> : Actua version</li>
+<li><strong>s.summary</strong> : Small description</li>
+<li><strong>s.homepage</strong> : You can put here the link you want, if you wave a portfolio, put it here.</li>
+<li><strong>s.license</strong>: The license of the Pod</li>
+<li><strong>s.author</strong> : Name of the creator</li>
+<li><strong>s.source</strong> :
+
+<ul>
+<li><strong>:git =></strong> : Link to the repo where the project is located (The whole folder)</li>
+<li><strong>:tag =></strong> : The tag, in github, that points to the "s.version"</li>
+</ul>
+</li>
+<li><strong>s.platform</strong> : :ios, '#Minimum iOS version where it is going to work#'</li>
+<li><strong>s.source_files</strong>: Folder, inside the repo, where are the files that are going to be dowloaded to the user to make it work. That way, we are avoiding the whole repo download when someone use your Pod.</li>
+<li><strong>s.frameworks</strong> : Frameworks needed for the Pod</li>
+<li><strong>s.requires_arc</strong>: If the Pod needs ARC</li>
+<li><strong>s.social_media_url</strong> : https://twitter.com/yourUserName</li>
+<li><strong>s.dependency</strong>: Other pods that your Pod need to work.</li>
+</ul>
+
+
+<p>Now, what we are going to do is to edit it. Then, we have to rename it to be something like that:</p>
+
+<ul>
+<li><code>/MainFolder/</code>
+
+<ul>
+<li>README.md</li>
+<li>License.md</li>
+<li>NombreDelPod.podspec &lt;---</li>
+<li><code>/Demo</code>
+
+<ul>
+<li>/...</li>
+</ul>
+</li>
+<li><code>/PodContainer</code>
+
+<ul>
+<li>/...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>¡DO NOT USE TEXTEDIT TO EDIT THE PODSPEC!</strong> My recomendation is XCode, but you can use others.</p>
+
+<h2>Pre-upload moment</h2>
+
+<p>Before uploadint the Pod, we will have to do more things. First, we are going to check that our *.podspec is correct. Open the Terminal and move to the <code>MainFolder</code>.</p>
+
+<p>Once there, run:</p>
+
+<pre><code>pod lib lint
+</code></pre>
+
+<p>If everything is correct, we are going to open our Git client and push <strong>ONLY</strong> the *.podspec, that is now verified.</p>
+
+<p>Now we have in our repo a *.pospec that points to a version(a tag) that is not in github. To solve this, we are going back to the Git client and push all the other files.</p>
+
+<p>And..
+<strong>¡¡¡</strong> We are going to add a tag to this commit, that has to be exactly the same as our <strong>s.version!!!</strong></p>
+
+<p>Now, the last thing before starting the upload process is to check that not only the *.podspec is correct, but all the repo is ready too. We are going to run:</p>
+
+<pre><code>pod spec lint
+</code></pre>
+
+<h2>Let's publish</h2>
+
+<p>Now that we have everything ready, we are only missing a CocoaPods registration. We are going to do it this way:</p>
+
+<p>Move to the <code>MainFolder</code> from the Terminal, and run:</p>
+
+<pre><code>pod trunk register pol.quintana1@gmail.com 'Pol Quintana' --description='macbook pro'
+</code></pre>
+
+<p><em>The description is like a computer id that we use to upload the Pod</em></p>
+
+<p>In just a seconds we are going to recieve a mail to verify that it is correct. Once verified... Let's publish!</p>
+
+<p>To publish, we run:</p>
+
+<pre><code>pod trunk push
+</code></pre>
+
+<p>That's all, if everything goes well, our Pod will be published</p>
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://guides.cocoapods.org/making/making-a-cocoapod.html">Guide in CocoaPods</a></li>
+<li><a href="http://guides.cocoapods.org/making/getting-setup-with-trunk">More information of the "trunk" command</a></li>
+</ul>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://twitter.com/poolqf">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://es.linkedin.com/in/polquintana/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:pol.quintana1@gmail.com">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Pol Quintana 2015</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
