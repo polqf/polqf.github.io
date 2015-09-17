@@ -46,7 +46,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
-        	<!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -94,94 +94,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-				<p align="middle">
-				<a href="https://github.com/redbooth/RealmResultsController"><img src="img/rrc.png" height="300px"/></a>
-				</p>
-
-<p>I am happy to announce that in <strong>Redbooth</strong> we are <strong><a href="https://github.com/redbooth/RealmResultsController">OpenSourcing</a></strong> <code>RealmResultsController</code>.</p>
-
-<p><code>RealmResultsController</code> is a NSFetchedResultsController implementation for Realm, written in <strong>Swift</strong>.</p>
-
-<p><code>Realm</code> is great, but it also has some <em>drawbacks</em>. The biggest problem we faced was the lack of fine-grained notifications</p>
-
-<h2>What covers RealmResultsController?</h2>
-
-<ul>
-<li>RealmExtension</li>
-<li>Intercepts all Realm changes</li>
-<li>Allow anyone to subscribe to changes of a specific RealmRequest</li>
-<li>Support for grouped results</li>
-<li>Cache filtered and sorted by the request</li>
-<li>Reports of Created, Updated and Deleted objects</li>
-<li>100% Code Coverage</li>
-</ul>
-
-                <p align="middle"><a href="https://github.com/redbooth/RealmResultsController"><img src="img/minigit.png" height="50px"/></a></p>
-
-
-<h3>RealmExtension:</h3>
-
-<p><code>RRC</code> has a <strong>Realm extension</strong> that adds methods to create/update/delete objects and <strong>notify</strong> about them. They are <em>wrappers</em> to the original methods that are going to take care of sending the necessary notifications.</p>
-
-<p>It also adds the ability to execute a <code>RealmRequest</code>. (I’ll talk about <code>RealmRequest</code>s later on this post)</p>
-
-<h3>Intercepts all Realm changes:</h3>
-
-<p>While using the wrapper methods in the <strong>Realm extension</strong>, you’ll have the ability to <strong>listen</strong> to all the changes, and act according to them.</p>
-
-<h3>Allow anyone to subscribe to changes of a specific RealmRequest:</h3>
-
-<p><code>RRC</code> has a component called <code>RealmRequest</code> (which is the equivalent of FetchRequest in CoreData). It has all the necessary information to do a request to Realm:</p>
-
-<ul>
-<li>Entity name</li>
-<li>Predicate</li>
-<li>Realm</li>
-<li>Sort Descriptors</li>
-</ul>
-
-
-<p>The way to create a <code>RRC</code> is using a <code>RealmRequest</code>. Once created, <strong>you’ll start receiving changes</strong> of that specific request.</p>
-
-<h3>Support for grouped results:</h3>
-
-<p>When creating a <code>RRC</code>, you have the ability to separate the results you are receiving. The way to do it is using a <strong>KeyPath</strong>. This way it is really easy to display the results in a table separated by the ones having the same keypath property.</p>
-
-<h5>It is important that the KeyPath <code>MUST</code> match the first SortDescriptor of the RealmRequest</h5>
-
-<h3>Cache filtered and sorted by request</h3>
-
-<p><code>RRC</code> has a cache that is sorted exactly as required by the <code>RealmRequest</code>. It stores all the objects to avoid having to refetch when it is not necessary.</p>
-
-<h3>Threading:</h3>
-
-<p>While developing this library, we’ve taken <strong>a lot</strong> of care of threading. <strong><code>Realm</code> is not thread safe</strong> , and a (Realm) object that is accessed from an incorrect thread throws an exception like this :</p>
-
-<pre><code>Realm accessed from incorrect thread
-</code></pre>
-
-<p>The way we are avoiding it is by using <strong>reflection</strong> to save in the cache an exact copy of the given object, but without it being associated to a concrete Realm. That way we can return this object through the <code>RRC</code> delegate methods without worries.</p>
-
-<h3>Mappers:</h3>
-
-<p><code>RRC</code> gives the developer the possibility to transform a given ModelObject, to which is the <code>RRC</code> subscribed, to a desired object. That way you can decouple the Model layer of the View Layer.</p>
-
-<p>There’s also the possibility of not using a mapper. That way the <code>RRC</code> is going to return <strong>Thread Safe</strong> objects. (See <strong>Threading</strong> section)</p>
-
-<h3>Filters:</h3>
-
-<p><code>NSPredicate</code> only allows you to filter by <code>Realm</code> properties (the ones specified as <code>dynamic var</code> in the Model), and this is <strong>very limited</strong>. Using <strong>filters</strong>, you can use the value of relationships or even an internal method of the Model.</p>
-
-<p>It is not mandatory, but it is really useful in some situations.</p>
-
-<h3>100% Code Coverage</h3>
-
-<p>We wanted to ensure that our code was <strong>fully covered</strong>, so we achieved <code>100% Code Coverage</code></p>
-</br>
-					<h3 align="middle">Take a look at the project:</h3>
-					<p align="middle"><a href="https://github.com/redbooth/RealmResultsController"><img src="img/Github.png" height="300px"/></a></p>
-
+                <p align="center">
+                    <a class="twitter-timeline" href="https://twitter.com/poolqf/timelines/639552162041831424" data-widget-id="644586443176869888"></a> 
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                    </script>
+                </p>
                 </div>
             </div>
         </div>
