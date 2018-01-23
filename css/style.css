@@ -4679,3 +4679,7 @@ filter: alpha(opacity=100);
 .swiper-button-prev {
 display: none;
 }
+
+.img-circle {
+    border-radius: 50%;
+}
